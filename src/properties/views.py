@@ -15,7 +15,19 @@ class PropertyListCreateView(APIView):
     def post(self, request):
         serializer = PropertySerializer(data=request.data)
         if serializer.is_valid():
+
+            existing_property = Property.objects.filter(
+                cod_property=request.data["cod_property"]
+            )
+
+            if existing_property.exists():
+                return Response(
+                    {"message": "Property already exists"},
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
+
             serializer.save()
+
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
