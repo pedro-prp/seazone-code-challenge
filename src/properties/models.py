@@ -3,7 +3,7 @@ from django.db import models
 
 class Property(models.Model):
     name = models.CharField(max_length=100)
-    cod_property = models.CharField(max_length=100)
+    cod_property = models.CharField(max_length=100, primary_key=True)
     guests_limit = models.IntegerField()
     bath_quant = models.IntegerField()
     acceptable_pets = models.BooleanField()

@@ -7,23 +7,30 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Property',
+            name="Property",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100)),
-                ('cod_property', models.CharField(max_length=100)),
-                ('guests_limit', models.IntegerField()),
-                ('bath_quant', models.IntegerField()),
-                ('acceptable_pets', models.BooleanField()),
-                ('cleaning_fee', models.DecimalField(decimal_places=2, max_digits=10)),
-                ('activation_date', models.DateField()),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=100)),
+                ("cod_property", models.CharField(max_length=100)),
+                ("guests_limit", models.IntegerField()),
+                ("bath_quant", models.IntegerField()),
+                ("acceptable_pets", models.BooleanField()),
+                ("cleaning_fee", models.DecimalField(decimal_places=2, max_digits=10)),
+                ("activation_date", models.DateField()),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
             ],
         ),
     ]

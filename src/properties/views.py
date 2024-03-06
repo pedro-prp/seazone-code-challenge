@@ -7,16 +7,27 @@ from .models import Property
 
 from drf_yasg.utils import swagger_auto_schema
 
+from .exceptions import PropertySerializerException
+
+from .repositories import PropertyRepository
+
 
 class PropertyListCreateView(APIView):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+        self._repository = PropertyRepository(
+            property_model=Property,
+            property_serializer=PropertySerializer,
+        )
     @swagger_auto_schema(
         operation_description="Get all properties",
         responses={200: PropertySerializer(many=True)},
     )
     def get(self, request):
-        properties = Property.objects.all()
-        serializer = PropertySerializer(properties, many=True)
-        return Response(serializer.data)
+        response = self._repository.get_all_properties()
+
+        return Response(response, status=status.HTTP_200_OK)
 
     @swagger_auto_schema(
         operation_description="Create a new property",
@@ -24,41 +35,29 @@ class PropertyListCreateView(APIView):
         responses={201: PropertySerializer()},
     )
     def post(self, request):
-        serializer = PropertySerializer(data=request.data)
-        if serializer.is_valid():
 
-            existing_property = Property.objects.filter(
-                cod_property=request.data["cod_property"]
-            )
+        response = self._repository.create_property(data=request.data)
 
-            if existing_property.exists():
-                return Response(
-                    {"message": "Property already exists"},
-                    status=status.HTTP_400_BAD_REQUEST,
-                )
-
-            serializer.save()
-
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(response, status=status.HTTP_201_CREATED)
 
 
 class PropertyDetailView(APIView):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self._repository = PropertyRepository(
+            property_model=Property,
+            property_serializer=PropertySerializer,
+        )
+
     @swagger_auto_schema(
         operation_description="Get a property by its cod_property",
         responses={200: PropertySerializer()},
     )
     def get(self, request, pk):
-        try:
-            property = Property.objects.get(cod_property=pk)
-        except Property.DoesNotExist:
-            return Response(
-                {"message": "Property not found"},
-                status=status.HTTP_404_NOT_FOUND,
-            )
-
-        serializer = PropertySerializer(property)
-        return Response(serializer.data)
+        response = self._repository.get_property_by_cod_property(
+            cod_property=pk
+        )
+        return Response(response, status=status.HTTP_200_OK)
 
     @swagger_auto_schema(
         operation_description="Update a property by its cod_property",
@@ -66,32 +65,16 @@ class PropertyDetailView(APIView):
         responses={200: PropertySerializer()},
     )
     def put(self, request, pk):
-        try:
-            property = Property.objects.get(cod_property=pk)
-        except Property.DoesNotExist:
-            return Response(
-                {"message": "Property not found"},
-                status=status.HTTP_404_NOT_FOUND,
-            )
+        response = self._repository.update_property(cod_property=pk, data=request.data)
 
-        serializer = PropertySerializer(property, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(response, status=status.HTTP_200_OK)
 
     @swagger_auto_schema(
         operation_description="Delete a property by its cod_property",
         responses={204: "No Content"},
     )
     def delete(self, request, pk):
-        try:
-            property = Property.objects.get(cod_property=pk)
-        except Property.DoesNotExist:
-            return Response(
-                {"message": "Property not found"},
-                status=status.HTTP_404_NOT_FOUND,
-            )
 
-        property.delete()
+        self._repository.delete_property(cod_property=pk)
+
         return Response(status=status.HTTP_204_NO_CONTENT)
