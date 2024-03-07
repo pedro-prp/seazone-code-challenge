@@ -1,11 +1,6 @@
-from properties.models import Property
-
-from properties.serializers import PropertySerializer
-
 from properties.exceptions import (
     PropertyNotFoundException,
     PropertySerializerException,
-    PropertyAlreadyExistsException,
 )
 
 from uuid import uuid4

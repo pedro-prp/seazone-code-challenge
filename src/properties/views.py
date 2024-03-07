@@ -6,9 +6,6 @@ from .serializers import PropertySerializer
 from .models import Property
 
 from drf_yasg.utils import swagger_auto_schema
-
-from .exceptions import PropertySerializerException
-
 from .repositories import PropertyRepository
 
 
