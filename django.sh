@@ -24,5 +24,11 @@ else
 fi
 echo "===================================="
 
+echo "Seeding Database..."
+python ./src/manage.py loaddata ./src/properties/fixtures/properties.json
+python ./src/manage.py loaddata ./src/advertisements/fixtures/advertisements.json
+python ./src/manage.py loaddata ./src/bookings/fixtures/bookings.json
+echo "===================================="
+
 echo "Starting Server..."
 python ./src/manage.py runserver 0.0.0.0:8000

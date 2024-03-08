@@ -1,0 +1,106 @@
+[
+  {
+    "model": "bookings.booking",
+    "fields": {
+      "code_booking": "61b36844-97b0-4edc-8aec-21f2c9ea77f3",
+      "advertisement": "6600bf1e-7456-4bd3-b8f5-0f63b170c5e6",
+      "check_in_date": "2024-01-01",
+      "check_out_date": "2024-01-05",
+      "total_price": 5000,
+      "number_of_guests": 2,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "bookings.booking",
+    "fields": {
+      "code_booking": "61b36844-97b0-4edc-8aec-21f2c9ea77f4",
+      "advertisement": "6600bf1e-7456-4bd3-b8f5-0f63b170c5e6",
+      "check_in_date": "2024-01-10",
+      "check_out_date": "2024-01-20",
+      "total_price": 10000,
+      "number_of_guests": 10,
+      "created_at": "2023-01-09T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+    {
+    "model": "bookings.booking",
+    "fields": {
+      "code_booking": "61b36844-97b0-4edc-8aec-21f2c9ea77f5",
+      "advertisement": "6600bf1e-7456-4bd3-b8f5-0f63b170c5e7",
+      "check_in_date": "2024-01-20",
+      "check_out_date": "2024-01-25",
+      "total_price": 4000,
+      "number_of_guests": 7,
+      "created_at": "2023-01-19T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+    {
+    "model": "bookings.booking",
+    "fields": {
+      "code_booking": "61b36844-97b0-4edc-8aec-21f2c9ea77f6",
+      "advertisement": "6600bf1e-7456-4bd3-b8f5-0f63b170c5e7",
+      "check_in_date": "2024-01-25",
+      "check_out_date": "2024-01-30",
+      "total_price": 4000,
+      "number_of_guests": 8,
+      "created_at": "2023-01-24T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+    {
+      "model": "bookings.booking",
+      "fields": {
+        "code_booking": "61b36844-97b0-4edc-8aec-21f2c9ea77f7",
+        "advertisement": "6600bf1e-7456-4bd3-b8f5-0f63b170c5e8",
+        "check_in_date": "2024-01-01",
+        "check_out_date": "2024-01-05",
+        "total_price": 5000,
+        "number_of_guests": 2,
+        "created_at": "2023-01-01T00:00:00Z",
+        "updated_at": "2023-01-01T00:00:00Z"
+      }
+  },
+    {
+      "model": "bookings.booking",
+      "fields": {
+        "code_booking": "61b36844-97b0-4edc-8aec-21f2c9ea77f8",
+        "advertisement": "6600bf1e-7456-4bd3-b8f5-0f63b170c5e8",
+        "check_in_date": "2024-01-10",
+        "check_out_date": "2024-01-20",
+        "total_price": 10000,
+        "number_of_guests": 10,
+        "created_at": "2023-01-09T00:00:00Z",
+        "updated_at": "2023-01-01T00:00:00Z"
+      }
+  },
+    {
+      "model": "bookings.booking",
+      "fields": {
+        "code_booking": "61b36844-97b0-4edc-8aec-21f2c9ea77f9",
+        "advertisement": "6600bf1e-7456-4bd3-b8f5-0f63b170c5e8",
+        "check_in_date": "2024-01-20",
+        "check_out_date": "2024-01-25",
+        "total_price": 4000,
+        "number_of_guests": 7,
+        "created_at": "2023-01-19T00:00:00Z",
+        "updated_at": "2023-01-01T00:00:00Z"
+      }
+  },
+    {
+      "model": "bookings.booking",
+      "fields": {
+        "code_booking": "61b36844-97b0-4edc-8aec-21f2c9ea77f2",
+        "advertisement": "6600bf1e-7456-4bd3-b8f5-0f63b170c5e8",
+        "check_in_date": "2024-01-25",
+        "check_out_date": "2024-01-30",
+        "total_price": 4000,
+        "number_of_guests": 8,
+        "created_at": "2023-01-24T00:00:00Z",
+        "updated_at": "2023-01-01T00:00:00Z"
+      }
+  }
+]
