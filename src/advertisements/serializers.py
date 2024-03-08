@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Advertisement
+from properties.models import Property
 
 from bookings.serializers import BookingSerializer
 
@@ -19,4 +20,4 @@ class AdvertisementSerializer(serializers.ModelSerializer):
             "updated_at",
             "reservations",
         ]
-        read_only_fields = ["id_advertisement"]
+        read_only_fields = ["id_advertisement", "created_at", "updated_at"]

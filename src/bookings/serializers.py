@@ -20,7 +20,7 @@ class BookingSerializer(serializers.ModelSerializer):
             "created_at",
             "updated_at",
         ]
-        read_only_fields = ["code_booking"]
+        read_only_fields = ["code_booking", "created_at", "updated_at", "advertisement"]
 
     def get_advertisement(self, obj):
         advertisement = Advertisement.objects.get(id_advertisement=obj.advertisement.id_advertisement)

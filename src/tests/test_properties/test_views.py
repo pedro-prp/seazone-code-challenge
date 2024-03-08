@@ -3,23 +3,7 @@ from django.test import TestCase
 from rest_framework import status
 from rest_framework.test import APITestCase
 
-from .models import Property
-
-
-class PropertyModelTest(TestCase):
-    def setUp(self):
-        self.property = Property.objects.create(
-            name="Casa de praia",
-            cod_property="CP001",
-            guests_limit=10,
-            bath_quant=3,
-            acceptable_pets=True,
-            cleaning_fee=100.00,
-            activation_date="2021-01-01",
-        )
-
-    def test_property_str(self):
-        self.assertEqual(str(self.property), "Casa de praia")
+from properties.models import Property
 
 
 class PropertyAPITest(APITestCase):
@@ -64,6 +48,14 @@ class PropertyAPITest(APITestCase):
         self.assertEqual(response.data["name"], "Casa de praia")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
+    def test_property_detail_not_found(self):
+        pk_property = "8021"
+
+        response = self.client.get(f"/properties/{pk_property}/")
+
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+        self.assertEqual(response.json()["message"], "Property not found")
+
     def test_property_update(self):
         pk_property = "8021e85b-41b7-4b2a-b66e-9a3d69371c99"
         data = {
@@ -99,3 +91,17 @@ class PropertyAPITest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
         self.assertEqual(response.json()["message"], "Property not found")
 
+    def test_property_delete(self):
+        pk_property = "8021e85b-41b7-4b2a-b66e-9a3d69371c99"
+
+        response = self.client.delete(f"/properties/{pk_property}/")
+
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+
+    def test_property_delete_not_found(self):
+        pk_property = "8021"
+
+        response = self.client.delete(f"/properties/{pk_property}/")
+
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+        self.assertEqual(response.json()["message"], "Property not found")

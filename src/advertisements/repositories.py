@@ -3,6 +3,10 @@ from advertisements.exceptions import (
     AdvertisementSerializerException,
 )
 
+from properties.repositories import PropertyRepository
+from properties.models import Property
+from properties.serializers import PropertySerializer
+
 from uuid import uuid4
 
 
@@ -45,14 +49,18 @@ class AdvertisementRepository:
         except self._advertisement_model.DoesNotExist:
             raise AdvertisementsNotFoundException()
 
-        serializer = self._advertisement_serializer(data=advertisement_object.__dict__)
+        advertisement_data = {
+            "id_advertisement": advertisement_object.id_advertisement,
+            "platform_fee": advertisement_object.platform_fee,
+            "platform_name": advertisement_object.platform_name,
+            "property": advertisement_object.property_id,
+            "created_at": advertisement_object.created_at,
+            "updated_at": advertisement_object.updated_at,
+        }
+
+        serializer = self._advertisement_serializer(data=advertisement_data)
 
         if serializer.is_valid():
-            advertisement_data = {
-                **serializer.validated_data,
-                "id_advertisement": id_advertisement,
-            }
-
             return advertisement_data
 
         raise AdvertisementSerializerException(serializer.errors)
@@ -68,13 +76,13 @@ class AdvertisementRepository:
         serializer = self._advertisement_serializer(data=data)
 
         if serializer.is_valid():
-            advertisement_data = serializer.validated_data
+            serializer_data = serializer.data
 
-            advertisement_object = self._advertisement_model.objects.get(id_advertisement=id_advertisement)
-            advertisement_object.update(**advertisement_data)
+            advertisement_object = self._advertisement_model.objects.filter(id_advertisement=id_advertisement)
+            advertisement_object.update(**serializer_data)
             advertisement_object[0].save()
 
-            return serializer.data
+            return serializer_data
 
         raise AdvertisementSerializerException(serializer.errors)
 

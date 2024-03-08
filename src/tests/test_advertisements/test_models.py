@@ -18,10 +18,10 @@ class AdvertisementModelTest(TestCase):
 
         self.advertisement = Advertisement.objects.create(
             id_advertisement="6600bf1e-7456-4bd3-b8f5-0f63b170c5e6",
-            property="CP001",
+            property=self.property,
             platform_name="olx",
             platform_fee=150.00,
         )
 
     def test_advertisement_str(self):
-        self.assertEqual(str(self.advertisement), "Casa de praia")
+        self.assertEqual(str(self.advertisement), "6600bf1e-7456-4bd3-b8f5-0f63b170c5e6")
