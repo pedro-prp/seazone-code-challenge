@@ -1,6 +1,6 @@
 from bookings.exceptions import (
     BookingSerializerException,
-    BookingNotFound,
+    BookingNotFoundException,
     BookingCheckoutPreCheckinException,
 )
 
@@ -46,10 +46,10 @@ class BookingRepository:
     def get_booking_by_id(self, id_booking):
         try:
             booking_object = self._booking_model.objects.get(
-                id_booking=id_booking,
+                code_booking=id_booking,
             )
         except self._booking_model.DoesNotExist:
-            raise BookingNotFound()
+            raise BookingNotFoundException()
 
         serializer = self._booking_serializer(data=booking_object.__dict__)
 
@@ -69,7 +69,7 @@ class BookingRepository:
                 id_booking=id_booking,
             )
         except self._booking_model.DoesNotExist:
-            raise BookingNotFound()
+            raise BookingNotFoundException()
 
         serializer = self._booking_serializer(data=data)
 
@@ -92,6 +92,6 @@ class BookingRepository:
         try:
             booking_obj = self._booking_model.objects.get(id_booking=id_booking)
         except self._booking_model.DoesNotExist:
-            raise BookingNotFound()
+            raise BookingNotFoundException()
 
         booking_obj.delete()

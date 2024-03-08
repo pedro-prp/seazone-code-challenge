@@ -1,4 +1,4 @@
-class BookingNotFound(Exception):
+class BookingNotFoundException(Exception):
     pass
 
 

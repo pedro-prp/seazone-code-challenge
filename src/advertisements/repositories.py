@@ -1,5 +1,5 @@
 from advertisements.exceptions import (
-    AdvertisementsNotFound,
+    AdvertisementsNotFoundException,
     AdvertisementSerializerException,
 )
 
@@ -43,7 +43,7 @@ class AdvertisementRepository:
                 id_advertisement=id_advertisement,
             )
         except self._advertisement_model.DoesNotExist:
-            raise AdvertisementsNotFound()
+            raise AdvertisementsNotFoundException()
 
         serializer = self._advertisement_serializer(data=advertisement_object.__dict__)
 
@@ -63,7 +63,7 @@ class AdvertisementRepository:
                 id_advertisement=id_advertisement,
             )
         except self._advertisement_model.DoesNotExist:
-            raise AdvertisementsNotFound()
+            raise AdvertisementsNotFoundException()
 
         serializer = self._advertisement_serializer(data=data)
 
@@ -82,6 +82,6 @@ class AdvertisementRepository:
         try:
             advertisement_obj = self._advertisement_model.objects.get(id_advertisement=id_advertisement)
         except self._advertisement_model.DoesNotExist:
-            raise AdvertisementsNotFound()
+            raise AdvertisementsNotFoundException()
 
         advertisement_obj.delete()

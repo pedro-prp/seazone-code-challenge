@@ -1,4 +1,4 @@
-class AdvertisementsNotFound(Exception):
+class AdvertisementsNotFoundException(Exception):
     pass
 
 
