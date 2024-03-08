@@ -37,6 +37,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("properties/", include("properties.urls")),
     path("advertisements/", include("advertisements.urls")),
+    path("bookings/", include("bookings.urls")),
     path(
         "swagger/",
         schema_view.with_ui("swagger", cache_timeout=0),

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "properties",
     "advertisements",
+    "bookings",
     "drf_yasg",
 ]
 
@@ -55,6 +56,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "properties.middlewares.exception_middleware.ExceptionMiddleware",
     "advertisements.middlewares.exception_middleware.ExceptionMiddleware",
+    "bookings.middlewares.exception_middleware.ExceptionMiddleware",
 ]
 
 ROOT_URLCONF = "khantoapp.urls"

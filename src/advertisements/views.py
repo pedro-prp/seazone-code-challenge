@@ -23,8 +23,9 @@ class AdvertisementListCreateView(APIView):
         return Response(response, status=status.HTTP_200_OK)
 
     def post(self, request):
-        advertisement = self._repository.create_advertisement(data=request.data)
-        return Response(advertisement, status=status.HTTP_201_CREATED)
+        response = self._repository.create_advertisement(data=request.data)
+
+        return Response(response, status=status.HTTP_201_CREATED)
 
 
 class AdvertisementDetailView(APIView):

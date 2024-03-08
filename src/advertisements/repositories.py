@@ -21,6 +21,7 @@ class AdvertisementRepository:
     def create_advertisement(self, data):
         serializer = self._advertisement_serializer(data=data)
         if serializer.is_valid():
+
             id_advertisement = uuid4()
 
             advertisement_object = self._advertisement_model(
@@ -29,7 +30,10 @@ class AdvertisementRepository:
             )
             advertisement_object.save()
 
-            return serializer.data
+            advertisement_data = serializer.data
+            advertisement_data["id_advertisement"] = id_advertisement
+
+            return advertisement_data
 
         raise AdvertisementSerializerException(serializer.errors)
 

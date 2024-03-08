@@ -2,11 +2,15 @@
 echo "Creating Migrations..."
 python ./src/manage.py makemigrations
 python ./src/manage.py makemigrations properties
+python ./src/manage.py makemigrations advertisements
+python ./src/manage.py makemigrations bookings
 echo "===================================="
 
 echo "Starting Migrations..."
 python ./src/manage.py migrate
 python ./src/manage.py migrate properties
+python ./src/manage.py migrate advertisements
+python ./src/manage.py migrate bookings
 echo "===================================="
 
 echo "Checking if Super User Exists..."

@@ -30,7 +30,10 @@ class PropertyRepository:
             )
             property_object.save()
 
-            return serializer.data
+            property_data = serializer.data
+            property_data["cod_property"] = cod_property
+
+            return property_data
 
         raise PropertySerializerException(serializer.errors)
 
