@@ -17,7 +17,7 @@ class AdvertisementListCreateView(APIView):
 
         self._repository = AdvertisementRepository(
             advertisement_model=Advertisement,
-            advertisement_serializer=AdvertisementSerializer
+            advertisement_serializer=AdvertisementSerializer,
         )
 
     @swagger_auto_schema(
@@ -46,7 +46,7 @@ class AdvertisementDetailView(APIView):
 
         self._repository = AdvertisementRepository(
             advertisement_model=Advertisement,
-            advertisement_serializer=AdvertisementSerializer
+            advertisement_serializer=AdvertisementSerializer,
         )
 
     @swagger_auto_schema(

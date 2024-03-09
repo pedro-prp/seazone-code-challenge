@@ -46,12 +46,14 @@ class BookingAPITest(APITestCase):
             "check_out_date": "2024-03-10",
             "total_price": 1000,
             "number_of_guests": 3,
-            "advertisement": self.advertisement.id_advertisement
+            "advertisement": self.advertisement.id_advertisement,
         }
 
         response = self.client.post("/bookings/", data)
 
-        self.assertEqual(response.data["advertisement"], self.advertisement.id_advertisement)
+        self.assertEqual(
+            response.data["advertisement"], self.advertisement.id_advertisement
+        )
         self.assertEqual(response.data["number_of_guests"], 3)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
@@ -61,12 +63,14 @@ class BookingAPITest(APITestCase):
             "check_out_date": "2024-03-03",
             "total_price": 1000,
             "number_of_guests": 3,
-            "advertisement": self.advertisement.id_advertisement
+            "advertisement": self.advertisement.id_advertisement,
         }
 
         response = self.client.post("/bookings/", data)
 
-        self.assertEqual(response.json()["message"], "Checkout date is before checkin date")
+        self.assertEqual(
+            response.json()["message"], "Checkout date is before checkin date"
+        )
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_booking_detail(self):

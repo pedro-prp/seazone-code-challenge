@@ -78,7 +78,9 @@ class AdvertisementRepository:
         if serializer.is_valid():
             serializer_data = serializer.data
 
-            advertisement_object = self._advertisement_model.objects.filter(id_advertisement=id_advertisement)
+            advertisement_object = self._advertisement_model.objects.filter(
+                id_advertisement=id_advertisement
+            )
             advertisement_object.update(**serializer_data)
             advertisement_object[0].save()
 

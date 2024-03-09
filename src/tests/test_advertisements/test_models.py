@@ -24,4 +24,6 @@ class AdvertisementModelTest(TestCase):
         )
 
     def test_advertisement_str(self):
-        self.assertEqual(str(self.advertisement), "6600bf1e-7456-4bd3-b8f5-0f63b170c5e6")
+        self.assertEqual(
+            str(self.advertisement), "6600bf1e-7456-4bd3-b8f5-0f63b170c5e6"
+        )

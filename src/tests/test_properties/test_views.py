@@ -44,7 +44,9 @@ class PropertyAPITest(APITestCase):
 
         response = self.client.get(f"/properties/{pk_property}/")
 
-        self.assertEqual(response.data["cod_property"], "8021e85b-41b7-4b2a-b66e-9a3d69371c99")
+        self.assertEqual(
+            response.data["cod_property"], "8021e85b-41b7-4b2a-b66e-9a3d69371c99"
+        )
         self.assertEqual(response.data["name"], "Casa de praia")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 

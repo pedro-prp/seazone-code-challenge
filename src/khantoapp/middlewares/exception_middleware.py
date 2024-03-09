@@ -67,4 +67,3 @@ class ExceptionMiddleware:
         }
 
         return response_dict.get(exception.__class__, HttpResponseServerError())
-

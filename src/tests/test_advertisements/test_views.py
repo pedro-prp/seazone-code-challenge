@@ -33,7 +33,7 @@ class AdvertisementAPITest(APITestCase):
         data = {
             "property": self.property.cod_property,
             "platform_name": "olx",
-            "platform_fee": 30.00
+            "platform_fee": 30.00,
         }
         response = self.client.post("/advertisements/", data)
 
@@ -46,7 +46,9 @@ class AdvertisementAPITest(APITestCase):
 
         response = self.client.get(f"/advertisements/{pk_advertisement}/")
 
-        self.assertEqual(response.data["id_advertisement"], self.advertisement.id_advertisement)
+        self.assertEqual(
+            response.data["id_advertisement"], self.advertisement.id_advertisement
+        )
         self.assertEqual(response.data["platform_name"], "Airbnb")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
@@ -64,11 +66,11 @@ class AdvertisementAPITest(APITestCase):
         data = {
             "platform_name": "olx",
             "platform_fee": 25.00,
-            "property": "8021e85b-41b7-4b2a-b66e-9a3d69371c99"
+            "property": "8021e85b-41b7-4b2a-b66e-9a3d69371c99",
         }
 
         response = self.client.put(f"/advertisements/{pk_advertisement}/", data)
 
         self.assertEqual(response.data["platform_name"], "olx")
-        self.assertEqual(response.data["platform_fee"], '25.00')
+        self.assertEqual(response.data["platform_fee"], "25.00")
         self.assertEqual(response.status_code, status.HTTP_200_OK)

@@ -17,6 +17,7 @@ class PropertyListCreateView(APIView):
             property_model=Property,
             property_serializer=PropertySerializer,
         )
+
     @swagger_auto_schema(
         operation_description="Get all properties",
         responses={200: PropertySerializer(many=True)},
@@ -51,9 +52,7 @@ class PropertyDetailView(APIView):
         responses={200: PropertySerializer()},
     )
     def get(self, request, pk):
-        response = self._repository.get_property_by_cod_property(
-            cod_property=pk
-        )
+        response = self._repository.get_property_by_cod_property(cod_property=pk)
         return Response(response, status=status.HTTP_200_OK)
 
     @swagger_auto_schema(

@@ -16,8 +16,7 @@ class BookingsListCreateView(APIView):
         super().__init__(**kwargs)
 
         self._repository = BookingRepository(
-            booking_model=Booking,
-            booking_serializer=BookingSerializer
+            booking_model=Booking, booking_serializer=BookingSerializer
         )
 
     @swagger_auto_schema(
@@ -45,8 +44,7 @@ class BookingsDetailView(APIView):
         super().__init__(**kwargs)
 
         self._repository = BookingRepository(
-            booking_model=Booking,
-            booking_serializer=BookingSerializer
+            booking_model=Booking, booking_serializer=BookingSerializer
         )
 
     @swagger_auto_schema(
