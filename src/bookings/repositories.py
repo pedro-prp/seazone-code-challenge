@@ -30,9 +30,12 @@ class BookingRepository:
             if checkin >= checkout:
                 raise BookingCheckoutPreCheckinException()
 
+            print(data.keys())
+
             booking_object = self._booking_model(
                 **serializer.validated_data,
                 code_booking=code_booking,
+                # advertisement_id=data.get("advertisement"),
             )
             booking_object.save()
 
@@ -43,54 +46,36 @@ class BookingRepository:
 
         raise BookingSerializerException(serializer.errors)
 
-    def get_booking_by_id(self, id_booking):
+    def get_booking_by_id(self, code_booking):
         try:
             booking_object = self._booking_model.objects.get(
-                code_booking=id_booking,
+                code_booking=code_booking,
             )
         except self._booking_model.DoesNotExist:
             raise BookingNotFoundException()
 
-        serializer = self._booking_serializer(data=booking_object.__dict__)
+        booking_data = {
+            "code_booking": booking_object.code_booking,
+            "advertisement": booking_object.advertisement_id,
+            "check_in_date": booking_object.check_in_date,
+            "check_out_date": booking_object.check_out_date,
+            "total_price": booking_object.total_price,
+            "comment": booking_object.comment,
+            "number_of_guests": booking_object.number_of_guests,
+            "created_at": booking_object.created_at,
+            "updated_at": booking_object.updated_at,
+        }
+
+        serializer = self._booking_serializer(data=booking_data)
 
         if serializer.is_valid():
-            booking_data = {
-                **serializer.validated_data,
-                "id_booking": id_booking,
-            }
-
             return booking_data
 
         raise BookingSerializerException(serializer.errors)
 
-    def update_booking(self, id_booking, data):
+    def delete_booking(self, code_booking):
         try:
-            self._booking_model.objects.get(
-                id_booking=id_booking,
-            )
-        except self._booking_model.DoesNotExist:
-            raise BookingNotFoundException()
-
-        serializer = self._booking_serializer(data=data)
-
-        if serializer.is_valid():
-            checkin = serializer.validated_data.get("checkin")
-            checkout = serializer.validated_data.get("checkout")
-
-            if checkin >= checkout:
-                raise BookingCheckoutPreCheckinException()
-
-            self._booking_model.objects.filter(
-                id_booking=id_booking,
-            ).update(**serializer.validated_data)
-
-            return serializer.data
-
-        raise BookingSerializerException(serializer.errors)
-
-    def delete_booking(self, id_booking):
-        try:
-            booking_obj = self._booking_model.objects.get(id_booking=id_booking)
+            booking_obj = self._booking_model.objects.get(code_booking=code_booking)
         except self._booking_model.DoesNotExist:
             raise BookingNotFoundException()
 

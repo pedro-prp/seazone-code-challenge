@@ -65,11 +65,3 @@ class AdvertisementDetailView(APIView):
     def put(self, request, pk):
         response = self._repository.update_advertisement(pk, request.data)
         return Response(response, status=status.HTTP_200_OK)
-
-    @swagger_auto_schema(
-        operation_description="Delete an advertisement by its id",
-        responses={204: "No Content"},
-    )
-    def delete(self, request, pk):
-        self._repository.delete_advertisement(pk)
-        return Response(status=status.HTTP_204_NO_CONTENT)

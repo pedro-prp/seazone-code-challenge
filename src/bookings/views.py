@@ -54,22 +54,13 @@ class BookingsDetailView(APIView):
         responses={200: BookingSerializer()},
     )
     def get(self, request, pk):
-        booking = self._repository.get_booking_by_id(pk)
+        booking = self._repository.get_booking_by_id(code_booking=pk)
         return Response(booking, status=status.HTTP_200_OK)
-
-    @swagger_auto_schema(
-        operation_description="Update a booking by its id",
-        request_body=BookingSerializer,
-        responses={200: BookingSerializer()},
-    )
-    def put(self, request, pk):
-        response = self._repository.update_booking(pk, request.data)
-        return Response(response, status=status.HTTP_200_OK)
 
     @swagger_auto_schema(
         operation_description="Delete a booking by its id",
         responses={204: "No content"},
     )
     def delete(self, request, pk):
-        self._repository.delete_booking(pk)
+        self._repository.delete_booking(code_booking=pk)
         return Response(status=status.HTTP_204_NO_CONTENT)

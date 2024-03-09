@@ -85,11 +85,3 @@ class AdvertisementRepository:
             return serializer_data
 
         raise AdvertisementSerializerException(serializer.errors)
-
-    def delete_advertisement(self, id_advertisement):
-        try:
-            advertisement_obj = self._advertisement_model.objects.get(id_advertisement=id_advertisement)
-        except self._advertisement_model.DoesNotExist:
-            raise AdvertisementsNotFoundException()
-
-        advertisement_obj.delete()

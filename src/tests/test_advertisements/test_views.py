@@ -72,4 +72,3 @@ class AdvertisementAPITest(APITestCase):
         self.assertEqual(response.data["platform_name"], "olx")
         self.assertEqual(response.data["platform_fee"], '25.00')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-
