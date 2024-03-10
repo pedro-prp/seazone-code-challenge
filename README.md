@@ -1,6 +1,9 @@
 <h1 align="center"> Seazone Code Challenge </h1>
-<img src="./doc/assets/seazone-logo.png" alt="Logo Seazone" style="width: 70%; display: block; margin: 0 auto;">
-<br>
+
+<p align="center">
+  <img src="./doc/assets/seazone-logo.png" alt="Logo Seazone" style="width: 70%; display: block; margin: 0 auto;">
+  <br>
+</p>
 
 
 <p align="center">
