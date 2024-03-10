@@ -23,6 +23,7 @@ class AdvertisementRepository:
         return serializer.data
 
     def create_advertisement(self, data):
+        print("kjhfasjdflkjasl")
         serializer = self._advertisement_serializer(data=data)
         if serializer.is_valid():
 
