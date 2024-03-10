@@ -1,5 +1,5 @@
 <h1 align="center"> Seazone Code Challenge </h1>
-<img src="https://raichu-uploads.s3.amazonaws.com/companypagedetail_af9919de-84e2-4304-9732-e27d851ec281.png" alt="Logo Seazone" style="width: 70%; display: block; margin: 0 auto;">
+<img src="./doc/assets/seazone-logo.png" alt="Logo Seazone" style="width: 70%; display: block; margin: 0 auto;">
 <br>
 
 
