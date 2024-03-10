@@ -46,7 +46,13 @@ $ cd seazone-code-challenge
 
 ### 3. Iniciando a aplicação
 
-Para iniciar a aplicação, basta rodar o seguinte comando:
+Para configurar as variáveis de ambiente, basta rodar o comando:
+```bash
+cp .env.example .env
+```
+
+
+E para iniciar a aplicação, basta rodar o seguinte comando:
 
 ```bash
 $ docker-compose up
